@@ -4,6 +4,7 @@ namespace PocketLisp
 {
     enum TokenType
     {
+        NONE,
         NUMBER,
         SYMBOL,
         LPAREN,
@@ -18,6 +19,10 @@ namespace PocketLisp
         TokenType type;
         double value;
         std::string symbol;
+
+        Token() {
+            type = TokenType::NONE;
+        }
 
         Token(int ln, TokenType type)
         {
@@ -44,7 +49,7 @@ namespace PocketLisp
             return (type != TokenType::EOF_);
         }
 
-        operator std::string() const
+        std::string str()
         {
             std::string result;
 

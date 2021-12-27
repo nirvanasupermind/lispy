@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "src/lexer.cpp"
+#include "src/parser.cpp"
 
 int main(int argc, char *argv[])
 {
@@ -25,13 +25,13 @@ int main(int argc, char *argv[])
         // Close the file
         file.close();
 
+
         PocketLisp::Lexer lexer(path, text);
 
         std::vector<PocketLisp::Token> tokens = lexer.generate_tokens();
 
-        for (int i = 0; i < tokens.size(); i++)
-        {
-            std::cout << static_cast<std::string>(tokens.at(i)) << '\n';
-        }
+        PocketLisp::Parser parser(path, tokens);
+        
+        PocketLisp::Node tree = parser.parse();
     }
 }
