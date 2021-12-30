@@ -1,6 +1,6 @@
 #include <string>
 
-namespace PocketLisp
+namespace lispy
 {
     enum NodeType
     {
@@ -21,6 +21,7 @@ namespace PocketLisp
 
         Node()
         {
+            type = NodeType::EmptyNode;
         }
 
         Node(int ln, NodeType type, double value)
@@ -50,8 +51,10 @@ namespace PocketLisp
 
             switch (type)
             {
+            case NodeType::EmptyNode:
+                result += "empty";
             case NodeType::NumberNode:
-                result += value;
+                result += std::to_string(value);
             case NodeType::SymbolNode:
                 result += symbol;
             case NodeType::ListNode:

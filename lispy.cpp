@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "src/parser.cpp"
+#include "src/interpreter.cpp"
 
 int main(int argc, char *argv[])
 {
@@ -26,12 +26,17 @@ int main(int argc, char *argv[])
         file.close();
 
 
-        PocketLisp::Lexer lexer(path, text);
+        lispy::Lexer lexer(path, text);
 
-        std::vector<PocketLisp::Token> tokens = lexer.generate_tokens();
+        std::vector<lispy::Token> tokens = lexer.generate_tokens();
 
-        PocketLisp::Parser parser(path, tokens);
+        lispy::Parser parser(path, tokens);
         
-        PocketLisp::Node tree = parser.parse();
+        lispy::Node tree = parser.parse();    
+
+        lispy::Interpreter interpreter(path);
+        lispy::Scope global_scope;
+
+        std::cout << interpreter.visit(tree, global_scope).str() << '\n';
     }
 }

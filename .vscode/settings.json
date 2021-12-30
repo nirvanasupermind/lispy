@@ -3,7 +3,7 @@
         "*.toml": "ini",
         "*.pluto": "coffeescript",
         "*.vml": "xml",
-        "*.pocketlisp": "clojure",
+        "*.pocketlisp": "lisp",
         "__bit_reference": "cpp",
         "__config": "cpp",
         "__debug": "cpp",
@@ -68,6 +68,9 @@
         "unordered_map": "cpp",
         "utility": "cpp",
         "vector": "cpp",
-        "filesystem": "cpp"
-    }
+        "filesystem": "cpp",
+        "__tree": "cpp",
+        "map": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

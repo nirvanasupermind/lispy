@@ -1,10 +1,9 @@
 #include <string>
 
-namespace PocketLisp
+namespace lispy
 {
     enum TokenType
     {
-        NONE,
         NUMBER,
         SYMBOL,
         LPAREN,
@@ -19,10 +18,6 @@ namespace PocketLisp
         TokenType type;
         double value;
         std::string symbol;
-
-        Token() {
-            type = TokenType::NONE;
-        }
 
         Token(int ln, TokenType type)
         {
@@ -45,7 +40,7 @@ namespace PocketLisp
         }
 
         explicit operator bool() const
-        {
+        {   
             return (type != TokenType::EOF_);
         }
 
@@ -55,8 +50,12 @@ namespace PocketLisp
 
             switch (type)
             {
+            // case TokenType::NONE:
+            //     result += "NONE";
+            //     break;
             case TokenType::NUMBER:
-                result += "NUMBER:" + std::to_string(value);
+                result += "NUMBER:";
+                result += std::to_string(value);
                 break;
             case TokenType::SYMBOL:
                 result += "SYMBOL:" + symbol;

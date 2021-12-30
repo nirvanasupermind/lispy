@@ -4,7 +4,7 @@
 
 #include "./tokens.cpp"
 
-namespace PocketLisp
+namespace lispy
 {
     const std::string WHITESPACE(" \n\r\t");
     const std::string DIGITS("0123456789");
@@ -56,18 +56,22 @@ namespace PocketLisp
                 else if (current == '(')
                 {
                     tokens.push_back(Token(ln, TokenType::LPAREN));
+                    advance();
                 }
                 else if (current == ')')
                 {
                     tokens.push_back(Token(ln, TokenType::RPAREN));
+                    advance();
                 }
                 else
                 {
-                    std::cout << file << ":" << ln << ": "
-                              << "illegal character '" << current << "'" << '\n';
-                    std::exit(0);
+                    std::cout << file << ':' << ln << ": "
+                              << "illegal character '" << current << '\'' << '\n';
+                    std::exit(EXIT_FAILURE);
                 }
             }
+
+            tokens.push_back(Token(ln, TokenType::EOF_));
 
             return tokens;
         }
