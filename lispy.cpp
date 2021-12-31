@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
 
         lispy::Interpreter interpreter(path);
         lispy::Scope global_scope;
+        global_scope.add_builtins();
 
         std::cout << interpreter.visit(tree, global_scope).str() << '\n';
     }

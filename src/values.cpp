@@ -14,7 +14,8 @@ namespace lispy
         double value;
         std::function<Value()> lambda;
 
-        Value() {
+        Value()
+        {
             this->type = ValueType::Nil;
         }
 
@@ -49,5 +50,9 @@ namespace lispy
 
             return result;
         }
+    };
+
+    class Failure : public Value
+    {
     };
 }

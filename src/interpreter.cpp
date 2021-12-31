@@ -1,10 +1,9 @@
 #include "./parser.cpp"
 #include "./scopes.cpp"
+#include "./utils.cpp"
 
 namespace lispy
 {
-    // test comment
-    // test comment II
     class Interpreter
     {
     public:
@@ -34,8 +33,8 @@ namespace lispy
 
         Value visit_symbol_node(Node node, Scope scope)
         {
-            Value *result = scope.get(node.symbol);
-            if (result == NULL)
+            Value result = scope.get(node.symbol);
+            if (instanceof<Failure>(&result))
             {
                 std::cout << file << ':' << node.ln << ": "
                           << "unbound variable '" << node.symbol << '\'' << '\n';
@@ -43,7 +42,7 @@ namespace lispy
             }
             else
             {
-                return *result;
+                return result;
             }
         }
     };
