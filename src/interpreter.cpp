@@ -4,6 +4,7 @@
 namespace lispy
 {
     // test comment
+    // test comment II
     class Interpreter
     {
     public:
