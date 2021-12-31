@@ -1,2 +1,2 @@
 # lispy
-A tiny procedural Lisp dialect with a Python-like API
+A tiny procedural Lisp dialect
