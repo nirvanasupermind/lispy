@@ -22,7 +22,7 @@ namespace lispy
             case SymbolNode:
                 return visit_symbol_node(node, scope);
             default:
-                return Value();
+                return visit_list_node(node, scope);
             }
         }
 
@@ -34,7 +34,7 @@ namespace lispy
         Value visit_symbol_node(Node node, Scope scope)
         {
             Value result = scope.get(node.symbol);
-            if (instanceof<Failure>(&result))
+            if (instanceof <Failure>(&result))
             {
                 std::cout << file << ':' << node.ln << ": "
                           << "unbound variable '" << node.symbol << '\'' << '\n';
@@ -44,6 +44,11 @@ namespace lispy
             {
                 return result;
             }
+        }
+
+        Value visit_list_node(Node node, Scope scope)
+        {
+            return Value();
         }
     };
 }
