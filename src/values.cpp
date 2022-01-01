@@ -1,10 +1,10 @@
 namespace lispy
-{
+{    
     enum ValueType
     {
         Nil,
         Number,
-        Lambda
+        Function
     };
 
     class Value
@@ -12,7 +12,7 @@ namespace lispy
     public:
         ValueType type;
         double value;
-        std::function<Value()> lambda;
+        std::function<Value(std::string, int, std::vector<Value>)> function;
 
         Value()
         {
@@ -25,11 +25,11 @@ namespace lispy
             this->value = value;
         }
 
-        // Value(ValueType type, std::function<Value()> lambda)
-        // {
-        //     this->type = type;
-        //     this->lambda = lambda;
-        // }
+        Value(ValueType type, std::function<Value(std::string, int, std::vector<Value>)> function)
+        {
+            this->type = type;
+            this->function = function;
+        }
 
         std::string str()
         {
@@ -43,8 +43,8 @@ namespace lispy
             case ValueType::Number:
                 result += std::to_string(value);
                 break;
-            case ValueType::Lambda:
-                result += "<lambda>";
+            case ValueType::Function:
+                result += "[function]";
                 break;
             }
 

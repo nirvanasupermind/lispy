@@ -47,8 +47,22 @@ namespace lispy
         }
 
         Value visit_list_node(Node node, Scope scope)
-        {
-            return Value();
+        {                
+            std::string str = node.nodes[0].symbol;
+
+            if(str == "") {
+                std::cout << file << ':' << node.ln << ": "
+                          << visit(node.nodes[0], scope).str() << "is not callable" << '\n';
+                std::exit(EXIT_FAILURE);                
+            } else {
+                Value func = visit(node.nodes[0], scope);
+                std::vector<Value> args;
+                for(int i = 1; i < node.nodes.size(); i++) {
+                    args.push_back(visit(node.nodes[i], scope));
+                }
+
+                return func.function(file, node.ln, args);
+            }
         }
     };
 }

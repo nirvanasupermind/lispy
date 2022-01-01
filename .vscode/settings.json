@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.lispy": "lisp",
         "*.toml": "ini",
         "*.pluto": "coffeescript",
         "*.vml": "xml",
@@ -70,7 +71,8 @@
         "vector": "cpp",
         "filesystem": "cpp",
         "__tree": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "__memory": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

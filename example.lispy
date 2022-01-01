@@ -1,0 +1,7 @@
+; This code does not run yet, this is just an example of what 
+; the complete language will look like
+
+(def (fibo n)
+     (if (<= n 1) 1 (+ (fibo (- n 1)) (fibo (- n 2)))))
+
+(print (fibo 7))
