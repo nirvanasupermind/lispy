@@ -1,11 +1,9 @@
 //#include <utility>
 #include <map>
-#include "./values.cpp"
+#include "./builtins.cpp"
 
 namespace lispy
 {
-    using fun = std::function<Value(std::string, int, std::vector<Value>)>;
-
     class Scope
     {
     public:
@@ -40,9 +38,9 @@ namespace lispy
                     })
                 );
             */
-            set("NIL", Value());            
-            set("+", Value(ValueType::Function, fun([](std::string file, int ln, std::vector<Value> args)
-                                                    { return Value(); })));
+
+            set("NIL", Value());
+            set("+", Value(ValueType::Function, Value::fun(fun_plus)));
         }
     };
 }

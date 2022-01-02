@@ -72,7 +72,10 @@
         "filesystem": "cpp",
         "__tree": "cpp",
         "map": "cpp",
-        "__memory": "cpp"
+        "__memory": "cpp",
+        "clocale": "cpp",
+        "__bits": "cpp",
+        "__functional_03": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
