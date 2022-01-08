@@ -21,4 +21,7 @@ namespace lispy {
         
         return Value(ValueType::Number, a.value + b.value);
     }
+
+    Value NIL = Value();
+    Value plus = Value(ValueType::Function, Value::fun(fun_plus));
 }

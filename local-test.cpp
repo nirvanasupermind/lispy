@@ -1,17 +1,41 @@
 #include <iostream>
-#include <vector>
-#include "src/builtins.cpp"
+#include <map>
+
+class Point {
+    public:
+        int x;
+        int y;
+
+        Point() {
+            x = 0; 
+            y = 0;
+        }
+
+        Point(int x, int y) {
+            this->x = x;
+            this->y = y;
+        }
+};
 
 int main() {
-    std::vector<lispy::Value> args;
-    args.push_back(
-        lispy::Value(lispy::ValueType::Number, 1.0)
-    );
-    
-    args.push_back(
-        lispy::Value(lispy::ValueType::Number, 2.0)
-    );
-
-    std::cout << lispy::fun_plus("dummy", 1, args).str();
-    return 0;
+    Point p(2, 2);
+    std::string key("key");
+    std::map<std::string, Point> m;
+    m[key] = p;
+    std::cout << m[key].x; //2
 }
+
+// #include <iostream>
+// #include <vector>
+// #include "src/scopes.cpp"
+
+// int main() {
+//     lispy::Scope scope;
+
+//     lispy::Value testy() { }
+
+//     scope.set("a", lispy::Value(lispy::ValueType::Function, lispy::Value::fun(testy))));
+
+//     std::cout << scope.get("a").str();
+//     return 0;
+// }

@@ -1,0 +1,28 @@
+(+ 2 3)
+
+=====================================================
+
+input is (+ 2 3)
+
+LEXER takes in the input and emits tokens (type and value)
+[LPAREN, PLUS, NUMBER:2, NUMBER:3, RPAREN]
+
+PARSER takes in the tokens and emits an abstract syntax tree
+
+ListNode
+    SymbolNode "+"
+    NumberNode 2
+    NumberNode 3
+
+INTERPRETER takes in the abstract syntax tree
+
+visit(<ListNode>, global_scope)
+=> visit(<SymbolNode>, global_scope)
+=> visit(<NumberNode>, global_scope)
+=> visit(<NumberNode>, global_scope)
+
+add_builtins() {
+    set("+", +)
+    set("NIL")
+}
+======================================================

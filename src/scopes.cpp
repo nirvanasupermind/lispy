@@ -7,7 +7,7 @@ namespace lispy
     class Scope
     {
     public:
-        std::map<std::string, Value> map;
+        std::map<std::string, Value *> map;
         Scope *parent;
 
         Scope()
@@ -15,32 +15,98 @@ namespace lispy
             parent = NULL;
         }
 
-        Value get(std::string key)
+        Scope(const Scope &s)
         {
-            if (map.count(key) == 1)
-                return map[key];
-
-            return Failure();
+            this->map = s.map;
+            this->parent = s.parent;
         }
 
-        void set(std::string key, Value val)
+        Value *get(std::string key)
+        {
+            // // std::cout << key << '\n';
+            // // std::cout << map[key].str() << '\n';
+            // if (map.count(key) == 1)
+            //
+
+            std::cout << key << " " << map.count(key) << '\n';
+            std::cout << "+" << " " << map.count("+") << '\n';
+
+            std::cout << "********************" << '\n';
+            this->print();
+
+            return map.at(key);
+        }
+
+        void set(std::string key, Value *val)
         {
             map[key] = val;
         }
 
         void add_builtins()
         {
-            /* 
-                set(
-                    "+", 
-                    Value(ValueType::Function, [](std::string file, int ln, std::vector<Value> args) -> Value { 
-                        return Value(args.at(0).value + args.at(1).value);
-                    })
-                );
-            */
+            // set("NIL", NIL);
+            set("+", &plus);
+            // std::cout << get("+")->str() << '\n';
+            // std::cout << "scope pointer in add_builtins: " << this << '\n';
 
-            set("NIL", Value());
-            set("+", Value(ValueType::Function, Value::fun(fun_plus)));
+        }
+
+        void print()
+        {
+            for (auto &x : this->map)
+            {
+                std::cout << x.first << ": " << x.second->str() << "\n";
+            }
         }
     };
 }
+
+// namespace lispy
+// {
+//     class Scope
+//     {
+//     public:
+//         std::map<std::string, Value> map;
+//         Scope *parent;
+
+//         Scope()
+//         {
+//             parent = NULL;
+//         }
+
+//         Scope(const Scope &s)
+//         {
+//             this->map = s.map;
+//             this->parent = s.parent;
+//         }
+
+//         Value get(std::string key)
+//         {
+//             // // std::cout << key << '\n';
+//             // // std::cout << map[key].str() << '\n';
+//             // if (map.count(key) == 1)
+//             //
+
+//             return map.at(key);
+//         }
+
+//         void set(std::string key, Value val)
+//         {
+//             map[key] = val;
+//         }
+
+//         void add_builtins()
+//         {
+//             // set("NIL", NIL);
+//             std::string plusstr("+");
+//             set(plusstr, plus);
+//         }
+
+//         void print()
+//         {
+//             for (auto& x : this->map) {
+//                 std::cout << x.first << ": " << x.second.str() << "\n";
+//             }
+//         }
+//     };
+// }

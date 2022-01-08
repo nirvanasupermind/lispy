@@ -88,7 +88,7 @@ namespace lispy
             {
                 // Symbol
                 advance();
-
+                
                 return Node(ln, NodeType::SymbolNode, token.symbol);
             }
             else

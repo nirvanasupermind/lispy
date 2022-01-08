@@ -8,7 +8,7 @@ namespace lispy
 {
     const std::string WHITESPACE(" \n\r\t");
     const std::string DIGITS("0123456789");
-    const std::string NONDIGITS(" !\"#$%&\'*+,-./:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
+    const std::string NONDIGITS("!\"#$%&\'*+,-./:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
 
     class Lexer
     {

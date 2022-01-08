@@ -34,6 +34,13 @@ namespace lispy
             this->function = function;
         }
 
+        Value(const Value &v) {
+            this->type = v.type;
+            this->value = v.value;
+            this->function = v.function;
+            this->name = v.name;
+        }
+
         std::string str()
         {
             std::string result;
