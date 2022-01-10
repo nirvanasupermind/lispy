@@ -2,8 +2,9 @@ namespace lispy
 {
     enum ValueType
     {
-        Nil,
+        Empty,
         Number,
+        Boolean,
         Function
     };
 
@@ -12,29 +13,48 @@ namespace lispy
     public:
         using fun = std::function<Value(std::string, int, std::vector<Value>)>;
 
+        std::string name;
         ValueType type;
         double value;
+        bool boolean;
         fun function;
-        std::string name;
 
         Value()
         {
-            this->type = ValueType::Nil;
+            name = "(?)";
+            type = ValueType::Empty;
         }
 
         Value(ValueType type, double value)
         {
+            name = "(?)";
             this->type = type;
             this->value = value;
         }
 
+        Value(ValueType type, bool boolean)
+        {
+            name = "(?)";
+            this->type = type;
+            this->boolean = boolean;
+        }
+
         Value(ValueType type, fun function)
         {
+            name = "(?)";
             this->type = type;
             this->function = function;
         }
 
-        Value(const Value &v) {
+        Value(std::string name, ValueType type, fun function)
+        {
+            this->name = name;
+            this->type = type;
+            this->function = function;
+        }
+
+        Value(const Value &v)
+        {
             this->type = v.type;
             this->value = v.value;
             this->function = v.function;
@@ -47,22 +67,21 @@ namespace lispy
 
             switch (type)
             {
-            case ValueType::Nil:
-                result += "NIL";
+            case ValueType::Empty:
+                result += "()";
                 break;
             case ValueType::Number:
                 result += std::to_string(value);
                 break;
             case ValueType::Function:
-                result += "<function>";
+                result += "<function " + name + ">";
+                break;
+            case ValueType::Boolean:
+                result += (boolean ? "true" : "false");
                 break;
             }
 
             return result;
         }
-    };
-
-    class Failure : public Value
-    {
     };
 }

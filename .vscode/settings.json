@@ -1,6 +1,6 @@
 {
     "files.associations": {
-        "*.lispy": "lisp",
+        "*.lispy": "scheme",
         "*.toml": "ini",
         "*.pluto": "coffeescript",
         "*.vml": "xml",

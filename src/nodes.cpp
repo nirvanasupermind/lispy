@@ -64,6 +64,7 @@ namespace lispy
                     result += node.str() + " ";
                 }
             }
+            
 
             return result;
         }

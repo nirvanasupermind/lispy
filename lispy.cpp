@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
         // Close the file
         file.close();
 
+        text = "(let () ("+text+"))";
 
         lispy::Lexer lexer(path, text);
 
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
         lispy::Scope* global_scope = new lispy::Scope();
         global_scope->add_builtins();
 
-        std::cout << interpreter.visit(tree, global_scope).str() << '\n';
+
+        interpreter.visit(tree, global_scope);
     }
 }
